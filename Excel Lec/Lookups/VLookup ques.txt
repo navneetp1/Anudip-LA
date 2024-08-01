@@ -1,0 +1,13 @@
+Use VLOOKUP to find the product names for each ProductID in the Orders worksheet. 
+
+2. Use VLOOKUP to find the price for each ProductID in the Orders worksheet, then calculate the TotalPrice by multiplying the Quantity by the Product Price. 
+
+3. Use VLOOKUP to check if there are any ProductIDs in the Orders worksheet that do not exist in the Products worksheet. 
+
+4. Assume a discount of 10% is given on all products. Use VLOOKUP to find the original price and then calculate the discounted price. 
+
+5. Use VLOOKUP to find the price for each ProductID and then calculate the order value. Find the maximum order value from the list. 
+
+6. Use VLOOKUP to find out which products from the Products worksheet have not been ordered. 
+
+7. Use VLOOKUP to find the Product name and summarize the total quantity sold for each product.
