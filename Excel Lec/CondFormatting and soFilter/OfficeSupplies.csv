@@ -6,7 +6,7 @@ OrderDate,Region,Rep,Item,Units,Unit Price,Sales,,,,,
 7-Aug-14,Central,Matthew,Pen Set,42,23.95,1005.9,,,Richard ,East,2363.04
 15-Aug-14,East,Richard,Pencil,35,4.99,174.65,,,James,West,1283.61
 24-Aug-14,West,James,Desk,3,275,825,,,,,
-1-Sep-14,Central,Smith,Desk,2,125,250,,,,,
+1-Sep-14,Central,Smith,Desk,2,125,250,,,6002.09,,
 10-Sep-14,Central,Bill,Pencil,7,1.29,9.03,,,,,
 18-Sep-14,East,Richard,Pen Set,16,15.99,255.84,,,,,
 27-Sep-14,West,James,Pen,76,1.99,151.24,,,,,
