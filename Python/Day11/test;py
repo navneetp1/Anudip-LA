@@ -1,0 +1,27 @@
+#  do while loop
+# while True:
+#     num1 = int(input("Number 1 enter please: "))
+#     num2 = int(input("Number 2 enter please: "))
+
+#     x = input("Enter an operator(+,-,*,/): ")
+
+#     match x:
+#         case '+':
+#             print(num1 + num2)
+#             choice = input("want to go on?(y/n): ")
+#         case '-':
+#             print(num1 - num2)
+#             choice = input("want to go on?(y/n): ")
+#         case '*':
+#             print(num1 * num2)
+#             choice = input("want to go on?(y/n): ")
+#         case '/':
+#             print(num1 / num2)
+#             choice = input("want to go on?(y/n): ")
+#         case _:
+#             print("Invalid operator")
+
+#     if not choice == "y":
+#         break
+
+# print("You are out of the game. womp womp")
