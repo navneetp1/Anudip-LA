@@ -1,0 +1,25 @@
+Task 1:
+Step1 : install pandas
+cmd -> pip install pandas
+
+Step 2: Download csv file Movie_metadata - 5043 rows done
+
+
+Step 3: L column [ movie_title]  remove unwanted character done
+
+Step 4: Remove Null Rows in the dataset done
+
+Step 4: Remove unwanted columns [ C- H ]
+   
+        - 5000 rows -
+
+Step 5: Filter Director - B Column [James Cameron] 
+Example : 
+Title  year  rating
+Avatar 2009   8.0
+Avatar 2023   9.2
+Create Chart using matplotlib - Bar Chart
+
+step 6: using pandas - Export Another csv file 
+
+Filter - genre[Action],Language[English],Year[011-2015],rating[>7]
