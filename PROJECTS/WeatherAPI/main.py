@@ -1,7 +1,10 @@
+# if the third case doesn't work due to filePath error, uncomment the path variable and use it inside the call function
+
 from api import extractWeatherData, getWeatherData, averagePerMonth
 import matplotlib.pyplot as plt
 import numpy as np
 from subprocess import call
+import os
 
 data = getWeatherData()
 
@@ -81,7 +84,8 @@ def choiceMenu():
                 createAverageChart(monthlyAverages)
             case '3':
                 print("You chose the third option!")
-                call(["python",r"C:\Python Programs\WeatherAPI\city-avg.py"])
+                # path=os.path.abspath("city-avg.py")
+                call(["python","city-avg.py"])
             case '4':
                 print("Exiting...")
                 break
