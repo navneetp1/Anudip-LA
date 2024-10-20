@@ -1,14 +1,13 @@
-# if the third case doesn't work due to filePath error, uncomment the path variable and use it inside the call function
-
 from api import extractWeatherData, getWeatherData, averagePerMonth
 from scatterApi import scatterplotDelhi, scatterplotChennai
 from cityAvg import cityAverageTemperatures
 from daySunshine import daylightAndSunshineDurationsChennai, daylightAndSunshineDurationsDelhi
 from sunriseSunset import sunriseAndSunsetDelhi, sunriseAndSunsetChennai
+from minmax import maxMinTempChennai, maxMinTempDelhi
 import matplotlib.pyplot as plt
 import numpy as np
 from datetime import datetime, timedelta
-import os
+
 
 
 data = getWeatherData()
@@ -43,7 +42,7 @@ def chooseMonth():
 
     createChart(month, monthData.size, monthData)
 
-######################################################
+
 
 
 def createAverageChart(monthAvg):
@@ -71,7 +70,7 @@ def createAverageChart(monthAvg):
     plt.show()
 
 
-################################
+
 
 def createScatterPlot(x,y, city):
     xValues = x
@@ -91,7 +90,8 @@ def createScatterPlot(x,y, city):
     plt.tight_layout()
     plt.show()
 
-################################
+
+
 def createBarhChart(values, quantityName, place):
     months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     x = values
@@ -104,6 +104,9 @@ def createBarhChart(values, quantityName, place):
 
     plt.tight_layout()
     plt.show()
+
+
+
 
 def sunriseSunsetPlot(sunrise,sunset,place):
     months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -142,22 +145,57 @@ def sunriseSunsetPlot(sunrise,sunset,place):
     plt.tight_layout()
     plt.show()
 
+
+
+
+def dualBarPlot(maximum, minimum, place):
+    maxTemps = maximum
+    minTemps = minimum
+    months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+    width = 0.25  # the width of the bars
+    x = np.arange(len(months))
+    multiplier = 0
+    colors = ["#88CCEE", "#DDCC77"]
+
+    fig, ax = plt.subplots(layout='constrained')
+
+    for measurement,label,color in zip([maxTemps, minTemps], ["Max Temperatures", "Min Temperatures"], colors):
+        offset = width * multiplier
+        rects = ax.bar(x + offset, measurement, width, label=label, color=color, edgecolor="black", linewidth=1.1)
+        ax.bar_label(rects, padding=3)
+        multiplier += 1
+
+    # Add some text for labels, title and custom x-axis tick labels, etc.
+    ax.set_ylabel('Temperature(°C)')
+    ax.set_title(f"Monthly Maximum and Minimum Temperatures [{place} 2023]")
+    ax.set_xticks(x + width / 2, months)
+    ax.legend(loc='upper left')
+    ax.set_ylim(0, 60)
+
+    plt.show()
+
+
+
     
 
 def choiceMenu():
     while True:
         print("--|--Weather Statistics Menu--|--")
-        print("1. Day-wise Temperatures of any Month")
-        print("2. Average Monthly Temperatures")
-        print("3. Average Yearly Temperatures for different cities in India")
-        print("4. Scatterplot between Temperature and Humidity for Delhi(2023)")
-        print("5. Scatterplot between Temperature and Humidity for Chennai(2023)")
-        print("6. Sunshine and Daylight Durations in Delhi(2023)")
-        print("7. Sunshine and Daylight Durations in Chennai(2023)")
-        print("8. Sunrise and Sunset Times in Delhi(2023)")
-        print("9. Sunrise and Sunset Times in Chennai(2023)")
+        print("--|--All the graphs are based upon 2023 Weather Information--|--\n")
+        print("1.  Day-wise Temperatures of any Month in Delhi")
+        print("2.  Average Monthly Temperatures in Delhi")
+        print("3.  Average Yearly Temperatures for different cities in India")
+        print("4.  Scatterplot between Temperature and Humidity for Delhi(2023)")
+        print("5.  Scatterplot between Temperature and Humidity for Chennai(2023)")
+        print("6.  Sunshine and Daylight Durations in Delhi(2023)")
+        print("7.  Sunshine and Daylight Durations in Chennai(2023)")
+        print("8.  Sunrise and Sunset Times in Delhi(2023)")
+        print("9.  Sunrise and Sunset Times in Chennai(2023)")
+        print("10. Maximum and Minimum Temperatures per month in Delhi(2023)")
+        print("11. Maximum and Minimum Temperatures per month in Chennai(2023) ")
         
-        print("10. Exit")
+        print("12. Exit")
         choice = input("Enter your choice (1-10): ")
 
         match choice:
@@ -195,7 +233,13 @@ def choiceMenu():
             case '9':
                     sunriseChen, sunsetChen = sunriseAndSunsetChennai()
                     sunriseSunsetPlot(sunriseChen, sunsetChen, "CHENNAI")
-            case '10':
+            case '10': 
+                    minTemps, maxTemps = maxMinTempDelhi()
+                    dualBarPlot(maxTemps, minTemps, "DELHI")
+            case '11': 
+                    minTempsChen,maxTempsChen = maxMinTempChennai()
+                    dualBarPlot(maxTempsChen, minTempsChen, "CHENNAI")
+            case '12':
                     print("Exiting...")
                     break
             case _:
