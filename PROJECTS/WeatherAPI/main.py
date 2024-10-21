@@ -4,8 +4,10 @@ from cityAvg import cityAverageTemperatures
 from daySunshine import daylightAndSunshineDurationsChennai, daylightAndSunshineDurationsDelhi
 from sunriseSunset import sunriseAndSunsetDelhi, sunriseAndSunsetChennai
 from minmax import maxMinTempChennai, maxMinTempDelhi
+from extractData import fetchData
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 from datetime import datetime, timedelta
 
 
@@ -177,6 +179,31 @@ def dualBarPlot(maximum, minimum, place):
 
 
 
+def saveToCSV():
+    temperatures, humidity, sunrises, sunsets, sunshineDurations, daylightDurations, maxTemperatures, minTemperatures = fetchData()
+    months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
+    try:
+        filtered = pd.DataFrame({
+            "Months": months,
+            "Temperatures": temperatures,
+            "Humidity": humidity,
+            "Sunrise Times": sunrises,
+            "Sunset Times": sunsets,
+            "Sunshine Durations": sunshineDurations,
+            "Daylight Durations": daylightDurations,
+            "Maximum Temp": maxTemperatures,
+            "Minimum Temp": minTemperatures,
+        })
+
+        filename = input("Enter the name of the file(don't add extension): ")
+
+        filtered.to_excel(f"{filename}.xlsx", index=False)
+    except:
+          print("Some error occurred while creating file")
+    finally:
+          print("File has been created successfully.")
+
     
 
 def choiceMenu():
@@ -194,8 +221,9 @@ def choiceMenu():
         print("9.  Sunrise and Sunset Times in Chennai(2023)")
         print("10. Maximum and Minimum Temperatures per month in Delhi(2023)")
         print("11. Maximum and Minimum Temperatures per month in Chennai(2023) ")
+        print("12. Save data to Excel file")
         
-        print("12. Exit")
+        print("13. Exit")
         choice = input("Enter your choice (1-10): ")
 
         match choice:
@@ -240,6 +268,8 @@ def choiceMenu():
                     minTempsChen,maxTempsChen = maxMinTempChennai()
                     dualBarPlot(maxTempsChen, minTempsChen, "CHENNAI")
             case '12':
+                    saveToCSV()
+            case '13':
                     print("Exiting...")
                     break
             case _:
