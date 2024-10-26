@@ -23,10 +23,13 @@ def createChart(month,x,y):
     fig, axs = plt.subplots(1, 2, figsize=(12, 10))
     axs[0].plot(days, y,marker="D")
     axs[0].grid()
+    
 
     axs[0].set_xlabel("Day of the Month")
     axs[0].set_ylabel("Temperature(°C)")
     axs[0].set_title(f"Daily Temperature in {month}")
+    for a, b in zip(days, y):
+        axs[0].text(a-0.5, b+0.2, f" {b} ", fontsize=8, ha="center", va="bottom")
 
     barplot = axs[1].bar(days,y)
     axs[1].set_xlabel("Day of the Month")
@@ -35,11 +38,11 @@ def createChart(month,x,y):
     axs[1].bar_label(barplot, labels=y, rotation=90, fontsize=9)
 
 
-    plt.show()
     plt.tight_layout()
+    plt.show()
 
 def chooseMonth():
-    month = input("Enter month: ")
+    month = input("Enter month: ").lower()
     monthData = monthlyData[month]
 
     createChart(month, monthData.size, monthData)
@@ -59,6 +62,8 @@ def createAverageChart(monthAvg):
     axs[0].set_ylabel("Average Temperatures(°C)")
     axs[0].set_title(f"Average Temperatures over the year")
     axs[0].tick_params(axis="x",rotation=45)
+    for a, b in zip(months, avgs):
+        axs[0].text(a, b+0.2, f" {b} ", fontsize=8, ha="center", va="bottom")
 
     barplot = axs[1].barh(months,avgs, color="skyblue", linewidth=1.5, edgecolor="black")
     axs[1].set_xlabel("Average Temperatures")
@@ -168,7 +173,7 @@ def dualBarPlot(maximum, minimum, place):
         ax.bar_label(rects, padding=3)
         multiplier += 1
 
-    # Add some text for labels, title and custom x-axis tick labels, etc.
+  
     ax.set_ylabel('Temperature(°C)')
     ax.set_title(f"Monthly Maximum and Minimum Temperatures [{place} 2023]")
     ax.set_xticks(x + width / 2, months)
@@ -224,7 +229,7 @@ def choiceMenu():
         print("12. Save data to Excel file")
         
         print("13. Exit")
-        choice = input("Enter your choice (1-10): ")
+        choice = input("Enter your choice (1-13): ")
 
         match choice:
             case '1':
