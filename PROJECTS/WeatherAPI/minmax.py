@@ -1,10 +1,12 @@
 import requests
 import pandas as pd
+from EDA import checkData
 
 def maxMinTempDelhi():
     url="https://archive-api.open-meteo.com/v1/archive?latitude=28.6519&longitude=77.2315&start_date=2023-01-01&end_date=2023-12-31&daily=temperature_2m_max,temperature_2m_min&timezone=Asia%2FBangkok"
     response = requests.get(url).json()
     df = pd.DataFrame(response["daily"])
+    checkData(df)
 
     maxTemps = []
     minTemps = []
@@ -59,6 +61,7 @@ def maxMinTempChennai():
     url="https://archive-api.open-meteo.com/v1/archive?latitude=13.0878&longitude=80.2785&start_date=2023-01-01&end_date=2023-12-31&daily=temperature_2m_max,temperature_2m_min&timezone=Asia%2FBangkok"
     response = requests.get(url).json()
     df = pd.DataFrame(response["daily"])
+    checkData(df)
 
     maxTemps = []
     minTemps = []
@@ -107,5 +110,9 @@ def maxMinTempChennai():
         minTemps.append(min)
 
     return minTemps, maxTemps
+
+if __name__ == "__main__":
+    maxMinTempChennai()
+    maxMinTempDelhi()
 
 

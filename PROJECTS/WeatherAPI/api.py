@@ -1,5 +1,7 @@
 import requests
 import numpy as np
+import pandas as pd
+from EDA import checkData
 
 # DELHI ONLY...
 
@@ -73,3 +75,6 @@ if __name__ == "__main__":
     print("\nDecember\n", monthlyData["december"])
 
     print(averagePerMonth())
+    df = pd.DataFrame(data)
+    checkData(df)
+    

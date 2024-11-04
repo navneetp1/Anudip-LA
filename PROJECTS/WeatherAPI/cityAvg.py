@@ -1,6 +1,8 @@
 import requests
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
+from EDA import checkData
 
 def cityAverageTemperatures():
     def createAverageChart(city,avg):
@@ -51,8 +53,24 @@ def cityAverageTemperatures():
     city = city[sorted]
 
     # print(city, avg_arr)
-    createAverageChart(city, avg_arr)
+    # createAverageChart(city, avg_arr)
 
+
+if __name__ == "__main__":
+        BASE_URL = "https://archive-api.open-meteo.com/v1/archive?"
+        lat = [28.6519,19.0728,13.0878,22.5626,23.0258,25.5689]
+
+        lon = [77.2315,72.8826,80.2785,88.363,72.5873,91.8831]
+
+        
+        startDate = "2023-01-01"
+        endDate = "2023-12-31"
+        
+        for i in range(len(lat)):
+            url = f"{BASE_URL}latitude={lat[i]}&longitude={lon[i]}&start_date={startDate}&end_date={endDate}&daily=temperature_2m_mean&timezone=Asia%2FBangkok"
+            data = requests.get(url).json()
+            data = pd.DataFrame(data)
+            checkData(data)
 
 
 

@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 import requests
 import pandas as pd
+from EDA import checkData
 
 # times = []
 
@@ -15,7 +16,7 @@ import pandas as pd
 # times.append(dateObject2)
 # print(times)
 
-# def time_to_float(dt):
+# def timeInFloat(dt):
 #     return dt.hour + dt.minute / 60
 
 # floatTime = [round(time_to_float(time),2) for time in times]
@@ -27,6 +28,7 @@ def sunriseAndSunsetDelhi():
 
     response = requests.get(url).json()
     df = pd.DataFrame(response["daily"])
+    checkData(df)
     
     sunrises = []
     sunsets = []
@@ -98,6 +100,7 @@ def sunriseAndSunsetChennai():
 
     response = requests.get(url).json()
     df = pd.DataFrame(response["daily"])
+    checkData(df)
     
     sunrises = []
     sunsets = []
@@ -163,6 +166,10 @@ def sunriseAndSunsetChennai():
         sunsets.append(avgSunsetTime)
 
     return sunrises, sunsets
+
+if __name__=="__main__":
+    sunriseAndSunsetChennai()
+    sunriseAndSunsetDelhi()
 
 
 

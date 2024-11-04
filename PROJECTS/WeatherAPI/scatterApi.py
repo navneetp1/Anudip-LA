@@ -1,6 +1,9 @@
 # temperature vs humidity scatterplot in delhi vs chennai
 import requests
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from EDA import checkData
 
 
 
@@ -12,6 +15,7 @@ def scatterplotDelhi():
 
     response = requests.get(url).json()
     df = pd.DataFrame(response["hourly"])
+    checkData(df)
 
     tempWithHumidity = {}
 
@@ -60,12 +64,6 @@ def scatterplotDelhi():
     return tempWithHumidity
 
 # temperature vs humidity scatterplot in delhi vs chennai
-import requests
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-
-
 
 def scatterplotChennai():
     
@@ -73,6 +71,7 @@ def scatterplotChennai():
 
     response = requests.get(url).json()
     df = pd.DataFrame(response["hourly"])
+    checkData(df)
 
     tempWithHumidity = {}
 
@@ -119,6 +118,11 @@ def scatterplotChennai():
         # print(stats.loc["mean", "relative_humidity_2m"])
 
     return tempWithHumidity
+
+if __name__=="__main__":
+    scatterplotChennai()
+    scatterplotDelhi()
+    
 
 
 

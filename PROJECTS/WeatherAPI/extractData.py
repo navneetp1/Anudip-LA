@@ -2,6 +2,7 @@ import requests
 import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
+from EDA import checkData
 
 def fetchData():
 
@@ -80,6 +81,8 @@ def fetchData():
     response = requests.get(url).json()
     hourly = pd.DataFrame(response["hourly"])
     daily = pd.DataFrame(response["daily"])
+    checkData(hourly)
+    checkData(daily)
 
     for i in range(len(endTime)):
 
@@ -144,6 +147,8 @@ def fetchData():
 
 
 
+if __name__ == "__main__":
+    fetchData()
 
 
 

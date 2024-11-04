@@ -2,6 +2,7 @@
 
 import requests
 import pandas as pd
+from EDA import checkData
 
 # delhi
 def daylightAndSunshineDurationsDelhi():
@@ -9,6 +10,9 @@ def daylightAndSunshineDurationsDelhi():
 
     response = requests.get(url).json()
     df = pd.DataFrame(response["daily"])
+    checkData(df)
+
+
 
     avgSunshine = []
     avgDaylight = []
@@ -63,6 +67,7 @@ def daylightAndSunshineDurationsChennai():
 
     response = requests.get(url).json()
     df = pd.DataFrame(response["daily"])
+    checkData(df)
 
     avgSunshine = []
     avgDaylight = []
@@ -109,6 +114,11 @@ def daylightAndSunshineDurationsChennai():
         avgDaylight.append(daylight)
 
     return avgSunshine, avgDaylight
+
+
+if __name__ == "__main__":
+    daylightAndSunshineDurationsChennai()
+    daylightAndSunshineDurationsDelhi()
         
 
 
