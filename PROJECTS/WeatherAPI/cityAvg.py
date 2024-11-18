@@ -53,7 +53,7 @@ def cityAverageTemperatures():
     city = city[sorted]
 
     # print(city, avg_arr)
-    # createAverageChart(city, avg_arr)
+    createAverageChart(city, avg_arr)
 
 
 if __name__ == "__main__":

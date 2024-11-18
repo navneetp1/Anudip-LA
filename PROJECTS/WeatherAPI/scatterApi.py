@@ -15,7 +15,7 @@ def scatterplotDelhi():
 
     response = requests.get(url).json()
     df = pd.DataFrame(response["hourly"])
-    checkData(df)
+    # checkData(df)
 
     tempWithHumidity = {}
 
@@ -71,7 +71,7 @@ def scatterplotChennai():
 
     response = requests.get(url).json()
     df = pd.DataFrame(response["hourly"])
-    checkData(df)
+    # checkData(df)
 
     tempWithHumidity = {}
 

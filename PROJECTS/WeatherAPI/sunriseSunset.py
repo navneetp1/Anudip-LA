@@ -28,7 +28,7 @@ def sunriseAndSunsetDelhi():
 
     response = requests.get(url).json()
     df = pd.DataFrame(response["daily"])
-    checkData(df)
+    # checkData(df)
     
     sunrises = []
     sunsets = []
@@ -100,7 +100,7 @@ def sunriseAndSunsetChennai():
 
     response = requests.get(url).json()
     df = pd.DataFrame(response["daily"])
-    checkData(df)
+    # checkData(df)
     
     sunrises = []
     sunsets = []
