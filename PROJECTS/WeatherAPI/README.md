@@ -5,6 +5,7 @@
 #### The other files present are just modules, you can also run them individually to see what data they return.
 
 ### Some Charts
+![Test Image](Charts\image.png)
 =======
 
 >>>>>>> a03c79d0cb44c29c267db83a5b484ec39b77c1b9
