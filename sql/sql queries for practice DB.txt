@@ -1,0 +1,39 @@
+1. for finding the second highest salary employee
+ select first_name, last_name, salary from employees where salary = (select MAX(salary) from employees where salary < (select MAX(salary) from employees)) order by salary desc;
+
+2. for finding the employees of it department 
+select e.first_name, e.last_name, d.department_name from employees e join departments d on e.department_id=d.department_id where d.department_id=4;
+
+3. finding those employees whose salaries are above avg overall
+select first_name, last_name, salary from employees where salary > (select AVG(salary) from employees);
+
+4. finding those employees whose salaries are above avg in their respective departments
+SELECT first_name, last_name, salary
+FROM employees
+WHERE salary > (SELECT AVG(salary) 
+                FROM employees AS e2 
+                WHERE e2.department_id = employees.department_id);
+
+5. highest salaries in each department
+select first_name, last_name, salary from employees where salary = (select MAX(salary) from employees e where employees.department_id=e.department_id
+);
+
+6. total salary paid to employees in each department
+select d.department_name, SUM(e.salary) as total_salary from departments d join employees e on d.department_id=e.department_id group by department_name;
+
+7. Find the average salary in each department.
+ select d.department_name, AVG(e.salary) as total_salary from departments d join employees e on d.department_id=e.department_id group by department_na
+me;
+
+8.  Find the number of employees in each department.
+select d.department_name, count(e.employee_id) as Emp_count from departments d join employees e on e.department_id=d.department_id group by department_name;
+
+9. employees working in the same department as John Doe
+select first_name, last_name, department_id from employees where department_id = (select department_id from employees where first_name="John" and las
+t_name="Doe");
+
+10. find department with highest avg salary
+select d.department_name, AVG(e.salary) as avg_salary from departments d join employees e on e.department_id = d.department_id group by d.department_name order by avg_salary desc limit 1;
+
+11.  Find the total salary paid in each department and show only those departments with a total salary greater than 100,000.
+select d.department_name, SUM(e.salary) as avg_salary from departments d join employees e on e.department_id = d.department_id group by d.department_name having sum(e.salary)>=100000;

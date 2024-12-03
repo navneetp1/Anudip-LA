@@ -81,8 +81,8 @@ def fetchData():
     response = requests.get(url).json()
     hourly = pd.DataFrame(response["hourly"])
     daily = pd.DataFrame(response["daily"])
-    checkData(hourly)
-    checkData(daily)
+    # checkData(hourly)
+    # checkData(daily)
 
     for i in range(len(endTime)):
 
