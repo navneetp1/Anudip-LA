@@ -11,8 +11,6 @@ from EDA import checkData
 def scatterplotDelhi():
     
     url = "https://archive-api.open-meteo.com/v1/archive?latitude=28.6519&longitude=77.2315&start_date=2023-01-01&end_date=2023-12-31&hourly=temperature_2m,relative_humidity_2m&timezone=Asia%2FBangkok"
-
-
     response = requests.get(url).json()
     df = pd.DataFrame(response["hourly"])
     # checkData(df)

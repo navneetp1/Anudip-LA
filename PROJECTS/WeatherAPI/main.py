@@ -215,12 +215,12 @@ def choiceMenu():
     while True:
         print("--|--Weather Statistics Menu--|--")
         print("--|--All the graphs are based upon 2023 Weather Information--|--\n")
-        print("1.  Day-wise Temperatures of any Month in Delhi")
-        print("2.  Average Monthly Temperatures in Delhi")
-        print("3.  Average Yearly Temperatures for different cities in India")
-        print("4.  Scatterplot between Temperature and Humidity for Delhi(2023)")
-        print("5.  Scatterplot between Temperature and Humidity for Chennai(2023)")
-        print("6.  Sunshine and Daylight Durations in Delhi(2023)")
+        print("1.  Day-wise Temperatures of any Month in Delhi") # done
+        print("2.  Average Monthly Temperatures in Delhi") # done
+        print("3.  Average Yearly Temperatures for different cities in India") # done
+        print("4.  Scatterplot between Temperature and Humidity for Delhi(2023)") # done
+        print("5.  Scatterplot between Temperature and Humidity for Chennai(2023)") # done
+        print("6.  Sunshine and Daylight Durations in Delhi(2023)") # done
         print("7.  Sunshine and Daylight Durations in Chennai(2023)")
         print("8.  Sunrise and Sunset Times in Delhi(2023)")
         print("9.  Sunrise and Sunset Times in Chennai(2023)")
