@@ -3,8 +3,6 @@
 
 # Ignore specific files
 Drug Overdose Deaths -checkpoint.ipynb
-Anand_Vihar_Data.csv
-Dilshad_Garden_Data.csv
 Vivek_Vihar_Data.csv
 
 # Ignore CSV files inside AQI Statistics
