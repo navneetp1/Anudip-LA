@@ -142,7 +142,7 @@ begin
 insert into salaryDeleted (eid, valid_from, amount) 
 values (old.eid, old.valid_from, old.amount);
 end $$
-
+delimiter ;
 
 # actually deleting record from salary table to test trigger
 
@@ -151,6 +151,40 @@ delete from salary where eid = 102;
 select * from salaryDeleted;
 
 select * from salary;
+
+
+
+# -----------------------------------------------------------------------------
+# More trigger practice
+
+# ----------------- BEFORE INSERT TRIGGER ------------------------------------
+# Student table, if marks < 0, then auto modify student marks to 50.
+
+create table student(
+	stu_roll int,
+    age int,
+    name varchar(30),
+    marks float);
+
+delimiter //
+create trigger marks_verfiy
+before insert on student
+for each row
+if new.marks < 0 then set new.marks = 50;
+end if; //
+delimiter ;
+
+insert into student values
+(101, 14, 'Sharath', 78.90),
+(102, 13, 'Ajit', -20),
+(103, 14, 'Gibril', 90),
+(104, 13, 'Duleep', -90);
+
+select * from student; # you'll notice how the negative marks(-20,-90) get converted to 50
+
+# -----------------------------------------------------------------------------------------------------
+
+
 
 
 
