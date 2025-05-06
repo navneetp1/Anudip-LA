@@ -77,5 +77,36 @@ from
 ) x;
 
 
+-- CUME_DIST() (cumulative distribution)
+/* value ranges from 0 < CUME_DIST() <= 1	
+	Formula = Current Row no (or row number with value same as current row) / Total no of rows */
+
+-- Query to fetch all products constituting the first 40 % of the data in products table based on price. 
+select product_name,( x.cum_dist_percent || '%') as cume_dist_percentage from (
+	select * ,
+	round(cume_dist() over(order by price desc)::numeric * 100,2) as cum_dist_percent
+	from product
+) x
+where x.cum_dist_percent <= 40;
+
+
+-- PERCENT_RANK() (relative rank of the current row / Percentage Ranking)
+/* Value ranges from [1,0)
+	Formula = Current Row - 1 / Total no of rows - 1 */
+
+-- Query to identify how much percentage more expensive is 'Galaxy Z Fold 3' when compared to all products
+select product_name, percentage_rank from (
+	select *,
+	round(percent_rank() over(order by price)::numeric * 100, 2) as percentage_rank
+	from product
+) x
+where x.product_name = 'Galaxy Z Fold 3';
+
+-- 80.77 % more compared to other products
+
+
+
+
+
 
 
